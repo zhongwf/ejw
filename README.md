@@ -13,7 +13,9 @@ Easy Java Web Framework built upon spring-boot, spring-framework and spring-secu
 - ejw-starter-overlay
 
 ### TODO
-##### Maven
+##### spring-framework
+- session scoped beans
+##### maven
 - filter test sources
 
 ##### Cache
