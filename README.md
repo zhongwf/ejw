@@ -15,6 +15,7 @@ Easy Java Web Framework built upon spring-boot, spring-framework and spring-secu
 ### TODO
 ##### spring-framework
 - session scoped beans
+
 ##### maven
 - filter test sources
 
