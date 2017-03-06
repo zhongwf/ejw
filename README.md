@@ -13,6 +13,9 @@ Easy Java Web Framework built upon spring-boot, spring-framework and spring-secu
 - ejw-starter-overlay
 
 ### TODO
+##### design
+- remove url prefixes (/f/\*\*, /b/\*\*, /a/\*\*)
+
 ##### spring-framework
 - session scoped beans
 
