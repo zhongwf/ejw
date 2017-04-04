@@ -6,6 +6,7 @@ Easy Java Web Framework built upon spring-boot, spring-framework and spring-secu
 - A convenient starter project made with Maven Overlay
 
 ### TODO
+- phase out web.xml
 - profile-aware static resources (e.g.: react.min.js)
 - remove url prefixes (/f/\*\*, /b/\*\*, /a/\*\*)
 - auto load message sources
