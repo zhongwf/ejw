@@ -2,27 +2,13 @@
 Easy Java Web Framework built upon spring-boot, spring-framework and spring-security.
 
 ### FEATURES
-##### Maven
-- Profile
-
-### TECH
-##### spring-framework
-##### spring-security
-##### spring-boot
-##### maven
-- ejw-starter-overlay
+- Fully customizable property management in accordance with spring-boot's [Externalized Configuration](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html)
+- A convenient starter project made with Maven Overlay
 
 ### TODO
-##### design
+- profile-aware static resources (e.g.: react.min.js)
 - remove url prefixes (/f/\*\*, /b/\*\*, /a/\*\*)
-
-##### spring-framework
-- session scoped beans
-
-##### i18n
 - auto load message sources
-
-##### maven
 - filter test sources
 
 ##### Cache
