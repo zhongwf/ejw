@@ -12,6 +12,9 @@ Easy Java Web Framework built upon spring-boot, spring-framework and spring-secu
 - profile-aware static resources (e.g.: react.min.js)
 - remove url prefixes (/f/\*\*, /b/\*\*, /a/\*\*)
 - filter test sources
+
+##### MVC
+- find a replacement for JSP?
 - revamp ControllerResult
 
 ##### Cache
