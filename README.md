@@ -15,7 +15,7 @@ Easy Java Web Framework built upon spring-boot, spring-framework and spring-secu
 - remove url prefixes (/f/\*\*, /b/\*\*, /a/\*\*)
 - filter test sources
 - properties
-  - [@ConfigurationProperties](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/context/properties/ConfigurationProperties.html)
+  - hierarchical @ConfigurationProperties
 
 ##### MVC
 - find a replacement for JSP?
