@@ -26,3 +26,8 @@ Easy Java Web Framework built upon spring-boot, spring-framework and spring-secu
 - startup time
 - properties bean
 
+##### Logging
+- multiple logging targets according to level/format
+- async logging
+
+
