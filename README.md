@@ -17,6 +17,16 @@ Easy Java Web Framework built upon spring-boot, spring-framework and spring-secu
 - properties
   - hierarchical @ConfigurationProperties
 
+##### Web Admin
+- biz modules
+  - security
+  - sysconfig
+  - properties?
+- dev components
+  - data table
+  - search
+  - sorting
+
 ##### MVC
 - find a replacement for JSP?
 - revamp ControllerResult
