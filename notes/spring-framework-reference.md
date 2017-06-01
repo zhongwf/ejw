@@ -1,4 +1,4 @@
-# [spring-framework-reference](http://docs.spring.io/spring/docs/current/spring-framework-reference/)
+# spring-framework-reference ([htmlsingle](https://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/), [pdf](https://docs.spring.io/spring/docs/current/spring-framework-reference/pdf/spring-framework-reference.pdf))
 
 ## 22. Web MVC framework
 
