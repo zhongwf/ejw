@@ -43,7 +43,7 @@ public class I18nConfig {
 		return interceptor;
 	}
 
-	@ConditionalOnProperty(value = "ejw.components.i18n.localeResolver", havingValue = "CookieLocaleResolver")
+	@ConditionalOnProperty(value = "ejw.components.i18n.localeResolver", havingValue = "cookieLocaleResolver")
 	@Bean
 	public CookieLocaleResolver localeResolver(
 			@Value("${ejw.components.i18n.defaultLocale:en_US}") String defaultLocale,

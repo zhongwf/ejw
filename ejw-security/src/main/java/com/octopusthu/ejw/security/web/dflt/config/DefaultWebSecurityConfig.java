@@ -89,6 +89,8 @@ public class DefaultWebSecurityConfig extends WebSecurityConfigurerAdapter {
 			http.antMatcher(props.getDflt().getAntPattern());
 		}
 
+		http.csrf().disable();
+
 		http.portMapper().portMapper(portMapper);
 		http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint())
 				.accessDeniedPage(props.getDflt().getAccessDeniedPage());

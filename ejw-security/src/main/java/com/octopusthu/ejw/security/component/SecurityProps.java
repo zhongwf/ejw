@@ -1,8 +1,11 @@
 package com.octopusthu.ejw.security.component;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 
+@ConfigurationProperties("ejw.security")
 @Getter
 @Setter
 public class SecurityProps {
