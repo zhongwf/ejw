@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 
 import org.apache.commons.collections.MapUtils;
+import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.util.StringUtils;
@@ -39,8 +40,13 @@ public class DefaultAuthorizationRegistry implements AuthorizationRegistry {
 
 	public void authorizedRequests(LinkedHashSet<AuthorizedRequest> authorizedRequests) {
 		authorizedRequests.forEach(authorizedRequest -> {
-			this.requestMap.put(authorizedRequest.getMatcher(), "hasAnyRole("
-					+ StringUtils.collectionToCommaDelimitedString(authorizedRequest.getAuthorities()) + ")");
+			String expression = "hasAnyRole(";
+			for (ConfigAttribute config : authorizedRequest.getAuthorities()) {
+				expression += "'" + config.getAttribute() + "',";
+			}
+			expression = StringUtils.trimTrailingCharacter(expression, ',');
+			expression += ")";
+			this.requestMap.put(authorizedRequest.getMatcher(), expression);
 		});
 	}
 
