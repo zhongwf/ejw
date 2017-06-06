@@ -42,6 +42,7 @@ public class SecurityProps {
 	public static class Default {
 		private boolean enabled = true;
 		private String antPattern;
+		private String[] permitPatterns = {};
 		private String loginFormUrl = "/login";
 		private String accessDeniedPage;
 		private Ignoring ignoring = new Ignoring();

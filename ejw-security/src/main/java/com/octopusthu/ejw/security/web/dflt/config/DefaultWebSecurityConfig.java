@@ -24,6 +24,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.PortMapper;
 import org.springframework.security.web.PortResolver;
 import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
@@ -81,6 +82,7 @@ public class DefaultWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers(props.getDflt().getIgnoring().getAntPatterns());
+		web.expressionHandler(defaultWebSecurityExpressionHandler());
 	}
 
 	@Override
@@ -119,6 +121,8 @@ public class DefaultWebSecurityConfig extends WebSecurityConfigurerAdapter {
 			http.authorizeRequests().requestMatchers(entry.getKey()).access(entry.getValue());
 		}
 
+		http.authorizeRequests().antMatchers(props.getDflt().getPermitPatterns()).permitAll();
+
 		if (props.getDflt().isRejectPublicInvocations()) {
 			http.authorizeRequests().anyRequest().denyAll();
 		} else {
@@ -135,5 +139,11 @@ public class DefaultWebSecurityConfig extends WebSecurityConfigurerAdapter {
 		entry.setPortResolver(portResolver);
 		entry.afterPropertiesSet();
 		return entry;
+	}
+
+	private DefaultWebSecurityExpressionHandler defaultWebSecurityExpressionHandler() throws Exception {
+		DefaultWebSecurityExpressionHandler ret = new DefaultWebSecurityExpressionHandler();
+		ret.setDefaultRolePrefix(props.getRolePrefix());
+		return ret;
 	}
 }
