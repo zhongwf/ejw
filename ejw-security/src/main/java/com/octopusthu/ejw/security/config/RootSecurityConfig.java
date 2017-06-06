@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 import com.octopusthu.ejw.security.authorization.interfaces.AuthorizationRegistry;
-import com.octopusthu.ejw.security.component.AuthorityBasedSavedRequestAwareAuthenticationSuccessHandler;
+import com.octopusthu.ejw.security.component.AuthorityBasedSimpleUrlAuthenticationSuccessHandler;
 import com.octopusthu.ejw.security.component.HttpsAwareRedirectStrategy;
 import com.octopusthu.ejw.security.component.SecurityProps;
 
@@ -78,7 +78,7 @@ public class RootSecurityConfig {
 	@Bean
 	public AuthenticationSuccessHandler authenticationSuccessHandler() {
 		SecurityProps.Authentication authenticationProps = securityProps().getAuthentication();
-		AuthorityBasedSavedRequestAwareAuthenticationSuccessHandler authenticationSuccessHandler = new AuthorityBasedSavedRequestAwareAuthenticationSuccessHandler(
+		AuthorityBasedSimpleUrlAuthenticationSuccessHandler authenticationSuccessHandler = new AuthorityBasedSimpleUrlAuthenticationSuccessHandler(
 				authenticationProps.getTargetUrlParameter(), authenticationProps.getDefaultTargetUrl(),
 				redirectStrategy(), authorizationRegistry.getAuthorityUrlMap());
 		authenticationSuccessHandler.setRedirectStrategy(redirectStrategy());

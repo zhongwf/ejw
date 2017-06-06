@@ -13,31 +13,28 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.RedirectStrategy;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.util.StringUtils;
 
 /**
- * An enhancement to {@link SavedRequestAwareAuthenticationSuccessHandler},
- * allowing redirection based on current user's {@code GrantedAuthority}.
+ * An enhancement to {@link SimpleUrlAuthenticationSuccessHandler}, allowing
+ * redirection based on current user's {@code GrantedAuthority}.
  * <p>
- * Like {@link SavedRequestAwareAuthenticationSuccessHandler}, this class
- * prioritizes the use of {@code alwaysUseDefaultTargetUrl} and
- * {@code targetUrlParameter}, too. It then tries to find a matching url by
- * examining the {@code authentication} object against the
- * {@code authorityUrlMap}, before finally falling back to use
- * {@code defaultTargetUrl}.
+ * Like {@link SimpleUrlAuthenticationSuccessHandler}, this class prioritizes
+ * the use of {@code alwaysUseDefaultTargetUrl} and {@code targetUrlParameter},
+ * too. It then tries to find a matching url by examining the
+ * {@code authentication} object against the {@code authorityUrlMap}, before
+ * finally falling back to use {@code defaultTargetUrl}.
  * 
  * @author zhangyu octopusthu@gmail.com
  */
-public class AuthorityBasedSavedRequestAwareAuthenticationSuccessHandler
-		extends SavedRequestAwareAuthenticationSuccessHandler {
+public class AuthorityBasedSimpleUrlAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 	protected final Log log = LogFactory.getLog(this.getClass());
 
 	protected Map<? extends GrantedAuthority, String> authorityUrlMap = Collections.emptyMap();
 
-	public AuthorityBasedSavedRequestAwareAuthenticationSuccessHandler(String targetUrlParameter,
-			String defaultTargetUrl, RedirectStrategy redirectStrategy,
-			Map<? extends GrantedAuthority, String> authorityUrlMap) {
+	public AuthorityBasedSimpleUrlAuthenticationSuccessHandler(String targetUrlParameter, String defaultTargetUrl,
+			RedirectStrategy redirectStrategy, Map<? extends GrantedAuthority, String> authorityUrlMap) {
 		super();
 		super.setDefaultTargetUrl(defaultTargetUrl);
 		super.setTargetUrlParameter(StringUtils.hasText(targetUrlParameter) ? targetUrlParameter : null);
@@ -59,6 +56,7 @@ public class AuthorityBasedSavedRequestAwareAuthenticationSuccessHandler
 		if (targetUrl != null) {
 			clearAuthenticationAttributes(request);
 			getRedirectStrategy().sendRedirect(request, response, targetUrl);
+			return;
 		}
 
 		super.onAuthenticationSuccess(request, response, authentication);
