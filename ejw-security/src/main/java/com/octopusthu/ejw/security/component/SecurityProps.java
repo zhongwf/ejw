@@ -82,7 +82,7 @@ public class SecurityProps {
 		@Getter
 		@Setter
 		public static class Simple {
-			private long timeDeviationAllowed = 300000;
+			private long timeDeviationAllowed = 300;
 			private boolean appIdWhiteListEnabled = true;
 			private String[] appIdWhiteList = {};
 			private String[] appRegistry = {};

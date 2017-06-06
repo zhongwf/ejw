@@ -65,7 +65,7 @@ public class SimpleApiSecurityInterceptor extends AbstractApiSecurityInterceptor
 			return;
 		}
 
-		if (Math.abs(Long.parseLong(ts) - System.currentTimeMillis()) > props.getTimeDeviationAllowed()) {
+		if (Math.abs(Long.parseLong(ts) - System.currentTimeMillis() / 1000) > props.getTimeDeviationAllowed()) {
 			accessDenied(req, res, chain, this.getClass(), DENY_REASON_TIME_DEVIATION);
 			return;
 		}
