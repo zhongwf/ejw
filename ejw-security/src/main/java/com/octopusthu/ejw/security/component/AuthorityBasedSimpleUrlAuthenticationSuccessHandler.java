@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.util.StringUtils;
+
+import com.octopusthu.ejw.security.util.SecurityUtils;
 
 /**
  * An enhancement to {@link SimpleUrlAuthenticationSuccessHandler}, allowing
@@ -52,7 +55,8 @@ public class AuthorityBasedSimpleUrlAuthenticationSuccessHandler extends SimpleU
 			return;
 		}
 
-		String targetUrl = findAuthorityBasedTargetUrl(request, authentication);
+		String targetUrl = SecurityUtils.findAuthorityBasedTargetUrl(MapUtils.unmodifiableMap(authorityUrlMap),
+				authentication);
 		if (targetUrl != null) {
 			clearAuthenticationAttributes(request);
 			getRedirectStrategy().sendRedirect(request, response, targetUrl);
@@ -60,15 +64,6 @@ public class AuthorityBasedSimpleUrlAuthenticationSuccessHandler extends SimpleU
 		}
 
 		super.onAuthenticationSuccess(request, response, authentication);
-	}
-
-	protected String findAuthorityBasedTargetUrl(HttpServletRequest request, Authentication authentication) {
-		for (Map.Entry<? extends GrantedAuthority, String> entry : authorityUrlMap.entrySet()) {
-			if (authentication.getAuthorities().contains(entry.getKey())) {
-				return entry.getValue();
-			}
-		}
-		return null;
 	}
 
 }

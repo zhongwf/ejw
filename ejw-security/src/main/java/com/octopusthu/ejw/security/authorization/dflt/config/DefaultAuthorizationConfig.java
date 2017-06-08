@@ -16,12 +16,8 @@ import com.octopusthu.ejw.security.authorization.dflt.interfaces.AbstractDefault
 import com.octopusthu.ejw.security.authorization.interfaces.AuthorizationRegistry;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
-@ConditionalOnProperty("ejw.security.authorization.dflt.enabled")
-@ConditionalOnMissingBean(AuthorizationRegistry.class)
 @Configuration
-@Order(Ordered.LOWEST_PRECEDENCE - 5)
 public class DefaultAuthorizationConfig {
 
 	@Autowired(required = false)
@@ -32,7 +28,9 @@ public class DefaultAuthorizationConfig {
 		configurers = (configurers == null) ? Collections.emptyList() : configurers;
 	}
 
+	@ConditionalOnMissingBean(AuthorizationRegistry.class)
 	@Bean
+	@Order(Ordered.LOWEST_PRECEDENCE - 5)
 	public DefaultAuthorizationRegistry defaultAuthorizationRegistry() {
 		DefaultAuthorizationRegistry registry = new DefaultAuthorizationRegistry();
 		configurers.forEach(c -> {

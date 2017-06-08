@@ -40,7 +40,8 @@ public class SecurityContextUtils {
 		} catch (SecurityContextException e) {
 			return false;
 		}
-		return (auth != null && auth.isAuthenticated());
+		return (auth != null && auth.isAuthenticated()
+				&& auth.getAuthorities().contains(EjwSecConst.AUTHORITY_AUTHENTICATED_USER));
 	}
 
 	public static User getUserDetails(Authentication authentication) throws SecurityContextException {
