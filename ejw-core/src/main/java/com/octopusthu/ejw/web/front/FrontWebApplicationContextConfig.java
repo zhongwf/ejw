@@ -26,7 +26,7 @@ public class FrontWebApplicationContextConfig extends WebMvcConfigurerAdapter {
 	@ConditionalOnProperty("ejw.web.front.jspViewResolver.enabled")
 	@Bean
 	public InternalResourceViewResolver jspViewResolver(
-			@Value("${ejw.web.front.jspViewResolver.prefix:/WEB-INF/view/}") String prefix,
+			@Value("${ejw.web.front.jspViewResolver.prefix:/WEB-INF/view}") String prefix,
 			@Value("${ejw.web.front.jspViewResolver.suffix:.jsp}") String suffix) {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix(prefix);
