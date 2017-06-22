@@ -1,6 +1,7 @@
 package com.octopusthu.ejw.util;
 
 import java.io.IOException;
+import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -23,5 +24,9 @@ public class JsonUtils {
 
 	public static <T> T stringToObject(String str, Class<T> valueType) throws IOException {
 		return mapper.readValue(str, valueType);
+	}
+
+	public static Map<?, ?> stringToMap(String str) throws IOException {
+		return stringToObject(str, Map.class);
 	}
 }
