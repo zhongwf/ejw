@@ -28,11 +28,6 @@ Easy Java Web Framework built upon spring-boot, spring-framework and spring-secu
 - find a replacement for JSP?
 - revamp ControllerResult
 
-##### Cache
-- Ehcache non daemon thread
-- startup time
-- properties bean
-
 ##### Logging
 - multiple logging targets according to level/format
 - async logging
