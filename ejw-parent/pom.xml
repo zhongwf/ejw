@@ -115,6 +115,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.octopusthu.ejw</groupId>
+				<artifactId>ejw-common-components</artifactId>
+				<version>${ejw.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.octopusthu.ejw</groupId>
 				<artifactId>ejw-starter-overlay</artifactId>
 				<type>war</type>
 				<version>${ejw.version}</version>

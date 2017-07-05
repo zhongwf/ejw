@@ -1,0 +1,8 @@
+/Users/yu/Documents/git/repository/ejw/ejw-common-components/src/main/java/com/octopusthu/ejw/components/syslog/jpa/JpaSyslog.java
+/Users/yu/Documents/git/repository/ejw/ejw-common-components/src/main/java/com/octopusthu/ejw/components/syslog/jpa/domain/JpaSyslogEntryEntity.java
+/Users/yu/Documents/git/repository/ejw/ejw-common-components/src/main/java/com/octopusthu/ejw/components/syslog/Syslog.java
+/Users/yu/Documents/git/repository/ejw/ejw-common-components/src/main/java/com/octopusthu/ejw/components/syslog/config/SyslogConfig.java
+/Users/yu/Documents/git/repository/ejw/ejw-common-components/src/main/java/com/octopusthu/ejw/components/syslog/jpa/repo/JpaSyslogRepository.java
+/Users/yu/Documents/git/repository/ejw/ejw-common-components/src/main/java/com/octopusthu/ejw/components/syslog/DefaultSyslogEntry.java
+/Users/yu/Documents/git/repository/ejw/ejw-common-components/src/main/java/com/octopusthu/ejw/components/syslog/SyslogFactory.java
+/Users/yu/Documents/git/repository/ejw/ejw-common-components/src/main/java/com/octopusthu/ejw/components/syslog/SyslogEntry.java

@@ -11,6 +11,7 @@
 		<module>ejw-core</module>
 		<module>ejw-security</module>
 		<module>ejw-starter-overlay</module>
+		<module>ejw-common-components</module>
 	</modules>
 
 	<developers>
