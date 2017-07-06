@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EjwProps {
+	private String appName;
 	private Filters filters = new Filters();
 
 	@Getter

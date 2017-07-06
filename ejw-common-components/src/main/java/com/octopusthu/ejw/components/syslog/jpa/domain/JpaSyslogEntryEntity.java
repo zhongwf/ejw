@@ -10,11 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.boot.logging.LogLevel;
 
-import com.octopusthu.ejw.components.syslog.DefaultSyslogEntry.Operation.Result;
+import com.octopusthu.ejw.components.syslog.SyslogEntry.Operation.Result;
 
 import lombok.Data;
 
@@ -24,15 +25,16 @@ import lombok.Data;
 public class JpaSyslogEntryEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jpaSysLog_generator")
+	@SequenceGenerator(name = "jpaSysLog_generator", sequenceName = "SEQ_EJW_SYSLOG", allocationSize = 1)
 	@Column(name = "SEQ", nullable = false)
 	private Long seq;
 
-	@Column(name = "LEVEL", nullable = false)
+	@Column(name = "LOG_LEVEL", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private LogLevel level;
 
-	@Column(name = "TIME", nullable = false)
+	@Column(name = "LOG_TIME", nullable = false)
 	private Date time;
 
 	@Column(name = "APP")
@@ -43,6 +45,9 @@ public class JpaSyslogEntryEntity {
 
 	@Column(name = "OP_NAME", nullable = false)
 	private String opName;
+
+	@Column(name = "OP_TARGET")
+	private String opTarget;
 
 	@Column(name = "OP_RESULT")
 	@Enumerated(EnumType.STRING)
@@ -55,20 +60,11 @@ public class JpaSyslogEntryEntity {
 	@Column(name = "PRIN_ID")
 	private String prinId;
 
-	@Column(name = "PRIN_NAME")
-	private String prinName;
-
 	@Column(name = "PRIN_IP")
 	private String prinIp;
 
 	@Column(name = "PRIN_UA")
-	private String PrinUa;
-
-	@Column(name = "TRG_ID")
-	private String trgId;
-
-	@Column(name = "TRG_NAME")
-	private String trgName;
+	private String prinUa;
 
 	@Lob
 	@Column(name = "EXTRA")

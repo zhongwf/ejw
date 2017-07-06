@@ -6,14 +6,15 @@ import java.util.Map;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.boot.logging.LogLevel;
 import org.springframework.scheduling.annotation.Async;
 
-import com.octopusthu.ejw.components.syslog.DefaultSyslogEntry;
-import com.octopusthu.ejw.components.syslog.DefaultSyslogEntry.Module;
-import com.octopusthu.ejw.components.syslog.DefaultSyslogEntry.Operation;
-import com.octopusthu.ejw.components.syslog.DefaultSyslogEntry.Operation.Result;
-import com.octopusthu.ejw.components.syslog.DefaultSyslogEntry.Principal;
-import com.octopusthu.ejw.components.syslog.DefaultSyslogEntry.Target;
+import com.octopusthu.ejw.components.syslog.SyslogEntry;
+import com.octopusthu.ejw.components.syslog.SyslogEntry.Module;
+import com.octopusthu.ejw.components.syslog.SyslogEntry.Operation;
+import com.octopusthu.ejw.components.syslog.SyslogEntry.Operation.Result;
+import com.octopusthu.ejw.components.syslog.SyslogEntry.Principal;
+import com.octopusthu.ejw.components.syslog.SyslogEntryTemplate;
 import com.octopusthu.ejw.components.syslog.Syslog;
 import com.octopusthu.ejw.components.syslog.jpa.domain.JpaSyslogEntryEntity;
 import com.octopusthu.ejw.components.syslog.jpa.repo.JpaSyslogRepository;
@@ -23,14 +24,14 @@ import com.octopusthu.ejw.util.RequestContextUtils;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class AsyncJpaSyslog implements Syslog<DefaultSyslogEntry> {
+public class AsyncJpaSyslog implements Syslog {
 	protected final Log log = LogFactory.getLog(getClass());
 
 	private JpaSyslogRepository repo;
 
 	@Override
 	@Async
-	public void log(DefaultSyslogEntry entry) {
+	public void log(SyslogEntry entry) {
 		try {
 			repo.save(entryToEntity(entry));
 		} catch (Exception e) {
@@ -38,27 +39,31 @@ public class AsyncJpaSyslog implements Syslog<DefaultSyslogEntry> {
 		}
 	}
 
-	public void log(DefaultSyslogEntry template, String opName, Result opResult, String opContent, String prinId,
-			String prinName, String trgId, String trgName) {
+	@Override
+	public void log(SyslogEntryTemplate template, LogLevel level, String opTarget, Result opResult, String opContent,
+			Principal principal) {
+		SyslogEntry entry = null;
 		try {
-			DefaultSyslogEntry entry = template.clone();
-			entry.setOperation(new Operation(opName, opResult, opContent));
-			entry.setPrincipal(new Principal(prinId, prinName, RequestContextUtils.getUserIp(),
-					RequestContextUtils.getUserAgentString()));
-			entry.setTarget(new Target(trgId, trgName));
+			entry = template.clone();
+			entry.setLevel(level);
 			entry.setTime(new Date());
-			log(entry);
+			entry.setOperation(new Operation(template.getOperation() != null ? template.getOperation().getName() : null,
+					opTarget, opResult, opContent));
+			entry.setPrincipal(principal != null ? (Principal) principal.clone() : null);
 		} catch (Exception e) {
 			log.error("Error logging defaultSyslogEntry!", e);
+			return;
 		}
+		log(entry);
 	}
 
-	public void log(DefaultSyslogEntry template, String opName, Result opResult, String opContent, String trgId,
-			String trgName) {
-		log(template, opName, opResult, opContent, SecurityContextUtils.getUserId(), null, trgId, trgName);
+	@Override
+	public void log(SyslogEntryTemplate template, LogLevel level, String opTarget, Result opResult, String opContent) {
+		log(template, level, opTarget, opResult, opContent, new Principal(SecurityContextUtils.getUserId(),
+				RequestContextUtils.getUserIp(), RequestContextUtils.getUserAgentString()));
 	}
 
-	private JpaSyslogEntryEntity entryToEntity(DefaultSyslogEntry entry) {
+	protected JpaSyslogEntryEntity entryToEntity(SyslogEntry entry) {
 		JpaSyslogEntryEntity entity = new JpaSyslogEntryEntity();
 		entity.setLevel(entry.getLevel());
 		entity.setTime(entry.getTime());
@@ -70,20 +75,15 @@ public class AsyncJpaSyslog implements Syslog<DefaultSyslogEntry> {
 		Operation operation = entry.getOperation();
 		if (operation != null) {
 			entity.setOpName(operation.getName());
+			entity.setOpTarget(operation.getTarget());
 			entity.setOpResult(operation.getResult());
 			entity.setOpContent(operation.getContent());
 		}
 		Principal principal = entry.getPrincipal();
 		if (principal != null) {
 			entity.setPrinId(principal.getId());
-			entity.setPrinName(principal.getName());
 			entity.setPrinIp(principal.getIp());
 			entity.setPrinUa(principal.getUa());
-		}
-		Target target = entry.getTarget();
-		if (target != null) {
-			entity.setTrgId(target.getId());
-			entity.setTrgName(target.getName());
 		}
 		Map<String, String> extra = entry.getExtra();
 		if (MapUtils.isNotEmpty(extra)) {
