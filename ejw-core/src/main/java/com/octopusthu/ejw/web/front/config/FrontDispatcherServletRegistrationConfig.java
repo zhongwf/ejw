@@ -8,10 +8,16 @@ import org.springframework.context.annotation.Configuration;
 
 import com.octopusthu.ejw.web.AnnotationConfigDispatcherServletRegistrationBean;
 import com.octopusthu.ejw.web.front.FrontWebApplicationContextConfig;
+import com.octopusthu.ejw.web.front.component.EjwWebFrontProps;
 
 @ConditionalOnProperty("ejw.web.front.enabled")
 @Configuration
 public class FrontDispatcherServletRegistrationConfig {
+
+	@Bean
+	public EjwWebFrontProps ejwWebFrontProps() {
+		return new EjwWebFrontProps();
+	}
 
 	@Bean
 	public ServletRegistrationBean frontDispatcherServletRegistrationBean(
