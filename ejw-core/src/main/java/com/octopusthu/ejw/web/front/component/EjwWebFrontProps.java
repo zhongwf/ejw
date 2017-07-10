@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 public class EjwWebFrontProps {
 	private Servlet servlet = new Servlet();
-	private InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
 
 	@Getter
 	@Setter
@@ -17,14 +16,6 @@ public class EjwWebFrontProps {
 		private String name = "spring-front";
 		private String urlMappings = "/f/*";
 		private int loadOnStartup = 2;
-	}
-
-	@Getter
-	@Setter
-	public static class InternalResourceViewResolver {
-		private boolean enabled = false;
-		private String prefix = "/WEB-INF/view";
-		private String suffix = ".jsp";
 	}
 
 }

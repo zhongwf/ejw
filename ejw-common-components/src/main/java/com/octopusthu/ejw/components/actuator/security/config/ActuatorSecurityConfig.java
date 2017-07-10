@@ -1,10 +1,11 @@
-package com.octopusthu.ejw.security.web.api.config;
+package com.octopusthu.ejw.components.actuator.security.config;
 
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,11 +18,11 @@ import com.octopusthu.ejw.security.web.api.component.OAuth2ApiSecurityIntercepto
 import com.octopusthu.ejw.security.web.api.component.SimpleApiSecurityInterceptor;
 import com.octopusthu.ejw.security.web.api.interfaces.SimpleApiSecurityAuthenticationProvider;
 
-@ConditionalOnProperty("ejw.security.api.enabled")
+@ConditionalOnProperty("ejw.components.actuator.security.enabled")
 @Configuration
 @EnableWebSecurity
-@Order(-30)
-public class ApiWebSecurityConfig extends WebSecurityConfigurerAdapter {
+@Order(Ordered.LOWEST_PRECEDENCE - 50)
+public class ActuatorSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Inject
 	private SecurityProps props;
@@ -29,7 +30,7 @@ public class ApiWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired(required = false)
 	SimpleApiSecurityAuthenticationProvider simpleApiSecurityAuthenticationProvider;
 
-	public ApiWebSecurityConfig() {
+	public ActuatorSecurityConfig() {
 		super(true);
 	}
 
