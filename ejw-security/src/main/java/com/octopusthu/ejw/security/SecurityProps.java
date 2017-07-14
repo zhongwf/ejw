@@ -1,4 +1,4 @@
-package com.octopusthu.ejw.security.component;
+package com.octopusthu.ejw.security;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -24,6 +24,20 @@ public class SecurityProps {
 		private String targetUrlParameter = null;
 		private String defaultTargetUrl = "/";
 		private String failureUrl = "/login";
+
+		private UserAuthorities userAuthorities = new UserAuthorities();
+
+		@Getter
+		@Setter
+		public static class UserAuthorities {
+			private PropertyBased propertyBased = new PropertyBased();
+
+			@Getter
+			@Setter
+			public static class PropertyBased {
+				private String data = "";
+			}
+		}
 	}
 
 	@Getter

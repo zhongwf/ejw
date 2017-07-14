@@ -31,8 +31,8 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+import com.octopusthu.ejw.security.SecurityProps;
 import com.octopusthu.ejw.security.authorization.interfaces.AuthorizationRegistry;
-import com.octopusthu.ejw.security.component.SecurityProps;
 import com.octopusthu.ejw.security.web.dflt.interfaces.AbstractDefaultWebSecurityConfigurer;
 import com.octopusthu.ejw.security.web.dflt.interfaces.AbstractDefaultWebSecurityConfigurer.AuthenticationManagerBuilderDelegate;
 import com.octopusthu.ejw.security.web.dflt.interfaces.AbstractDefaultWebSecurityConfigurer.HttpSecurityFiltersDelegate;

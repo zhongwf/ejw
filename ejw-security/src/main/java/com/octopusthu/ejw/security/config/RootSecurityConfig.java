@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -18,10 +19,11 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
+import com.octopusthu.ejw.security.SecurityProps;
+import com.octopusthu.ejw.security.authentication.AuthorityBasedSimpleUrlAuthenticationSuccessHandler;
+import com.octopusthu.ejw.security.authentication.SimpleUserAuthoritiesService;
 import com.octopusthu.ejw.security.authorization.interfaces.AuthorizationRegistry;
-import com.octopusthu.ejw.security.component.AuthorityBasedSimpleUrlAuthenticationSuccessHandler;
 import com.octopusthu.ejw.security.component.HttpsAwareRedirectStrategy;
-import com.octopusthu.ejw.security.component.SecurityProps;
 
 /**
  * @author zhangyu octopusthu@gmail.com
@@ -43,8 +45,15 @@ public class RootSecurityConfig {
 	 * framework and other security-related classes.
 	 */
 	@Bean
-	GrantedAuthorityDefaults grantedAuthorityDefaults() {
+	public GrantedAuthorityDefaults grantedAuthorityDefaults() {
 		return new GrantedAuthorityDefaults(securityProps().getRolePrefix());
+	}
+
+	@ConditionalOnProperty("ejw.security.authentication.userAuthorities.propertyBased.enabled")
+	@Bean
+	public SimpleUserAuthoritiesService propertyBasedSimpleUserAuthoritiesService() {
+		String data = securityProps().getAuthentication().getUserAuthorities().getPropertyBased().getData();
+		return new SimpleUserAuthoritiesService(data);
 	}
 
 	@Bean

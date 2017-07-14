@@ -6,13 +6,11 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 
 import org.apache.commons.collections.MapUtils;
-import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.util.matcher.RequestMatcher;
-import org.springframework.util.StringUtils;
-
 import com.octopusthu.ejw.security.authorization.dflt.domain.AuthorizedRequest;
 import com.octopusthu.ejw.security.authorization.interfaces.AuthorizationRegistry;
+import com.octopusthu.ejw.security.util.SecurityUtils;
 
 public class DefaultAuthorizationRegistry implements AuthorizationRegistry {
 	private Map<String, SimpleGrantedAuthority> allAuthorities = new LinkedHashMap<String, SimpleGrantedAuthority>();
@@ -40,13 +38,8 @@ public class DefaultAuthorizationRegistry implements AuthorizationRegistry {
 
 	public void authorizedRequests(LinkedHashSet<AuthorizedRequest> authorizedRequests) {
 		authorizedRequests.forEach(authorizedRequest -> {
-			String expression = "hasAnyRole(";
-			for (ConfigAttribute config : authorizedRequest.getAuthorities()) {
-				expression += "'" + config.getAttribute() + "',";
-			}
-			expression = StringUtils.trimTrailingCharacter(expression, ',');
-			expression += ")";
-			this.requestMap.put(authorizedRequest.getMatcher(), expression);
+			this.requestMap.put(authorizedRequest.getMatcher(),
+					SecurityUtils.configAttributesToAccessExpression(authorizedRequest.getAuthorities()));
 		});
 	}
 

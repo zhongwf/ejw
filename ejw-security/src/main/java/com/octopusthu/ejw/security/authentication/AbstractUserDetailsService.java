@@ -1,11 +1,14 @@
 /**
  * 
  */
-package com.octopusthu.ejw.security.service;
+package com.octopusthu.ejw.security.authentication;
+
+import java.util.Collection;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,6 +26,6 @@ public abstract class AbstractUserDetailsService<U extends User, AR extends Obje
 	}
 
 	public abstract U loadUser(final Authentication authentication, final String username,
-			final AR authenticationResult) throws UsernameNotFoundException;
+			Collection<GrantedAuthority> authorities, final AR authenticationResult) throws UsernameNotFoundException;
 
 }

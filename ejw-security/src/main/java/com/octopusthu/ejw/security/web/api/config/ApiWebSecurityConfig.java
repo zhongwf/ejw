@@ -10,7 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
-import com.octopusthu.ejw.security.component.SecurityProps;
+
+import com.octopusthu.ejw.security.SecurityProps;
 import com.octopusthu.ejw.security.web.api.component.ApiAccessDecisionFilter;
 import com.octopusthu.ejw.security.web.api.component.LocalRegistrySimpleApiSecurityAuthenticationProvider;
 import com.octopusthu.ejw.security.web.api.component.OAuth2ApiSecurityInterceptor;
