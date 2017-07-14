@@ -13,7 +13,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.Assert;
 
-import com.octopusthu.ejw.security.component.SecurityProps;
+import com.octopusthu.ejw.security.SecurityProps;
 import com.octopusthu.ejw.security.web.api.interfaces.SimpleApiSecurityAuthenticationProvider;
 
 /**

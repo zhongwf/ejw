@@ -32,19 +32,4 @@ public class SecurityContextTestBackController extends BackBaseController {
 		return ControllerResult.valueOf(ControllerResult.SUCCESS, "", SecurityContextUtils.getUserDetails());
 	}
 
-	@RequestMapping("/user-id")
-	public ControllerResult getUserId() {
-		return ControllerResult.valueOf(ControllerResult.SUCCESS, "", SecurityContextUtils.getUserId());
-	}
-
-	@RequestMapping("/user-authorities")
-	public ControllerResult getUserAuthorites() {
-		return ControllerResult.valueOf(ControllerResult.SUCCESS, "", SecurityContextUtils.getUserAuthorites());
-	}
-
-	@RequestMapping("/local-roles")
-	public ControllerResult getLocalRoles() {
-		return ControllerResult.valueOf(ControllerResult.SUCCESS, "", SecurityContextUtils.getLocalRoles());
-	}
-
 }

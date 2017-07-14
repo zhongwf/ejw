@@ -1,4 +1,4 @@
-package com.octopusthu.ejw.security.component;
+package com.octopusthu.ejw.security.authentication;
 
 import java.io.IOException;
 import java.util.Collections;

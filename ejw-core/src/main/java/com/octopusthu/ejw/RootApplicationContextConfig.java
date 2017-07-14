@@ -23,8 +23,6 @@ import com.octopusthu.ejw.component.ExposedResourceBundleMessageSource;
 @EnableConfigurationProperties
 public class RootApplicationContextConfig {
 
-	// TODO: Caches
-
 	@Bean
 	public static PropertySourcesPlaceholderConfigurer propertySource() {
 		return new PropertySourcesPlaceholderConfigurer();
@@ -35,13 +33,13 @@ public class RootApplicationContextConfig {
 		return new EjwProps();
 	}
 
-	@ConditionalOnProperty(value = "ejw.listeners.list", havingValue = "requestContextListener")
+	@ConditionalOnProperty("ejw.listeners.requestContextListener.enabled")
 	@Bean
 	public ServletListenerRegistrationBean<RequestContextListener> requestContextListenerRegistrationBean() {
 		return new ServletListenerRegistrationBean<RequestContextListener>(new RequestContextListener());
 	}
 
-	@ConditionalOnProperty(value = "ejw.filters.list", havingValue = "characterEncodingFilter")
+	@ConditionalOnProperty("ejw.filters.characterEncodingFilter.enabled")
 	@Bean
 	public FilterRegistrationBean characterEncodingFilterRegistrationBean() {
 		EjwProps.Filters.CharacterEncodingFilter props = ejwProps().getFilters().getCharacterEncodingFilter();
@@ -54,7 +52,7 @@ public class RootApplicationContextConfig {
 		return bean;
 	}
 
-	@ConditionalOnProperty(value = "ejw.filters.list", havingValue = "shallowEtagHeaderFilter")
+	@ConditionalOnProperty("ejw.filters.shallowEtagHeaderFilter.enabled")
 	@Bean
 	public FilterRegistrationBean shallowEtagHeaderFilterRegistrationBean() {
 		EjwProps.Filters.ShallowEtagHeaderFilter props = ejwProps().getFilters().getShallowEtagHeaderFilter();

@@ -8,10 +8,16 @@ import org.springframework.context.annotation.Configuration;
 
 import com.octopusthu.ejw.web.AnnotationConfigDispatcherServletRegistrationBean;
 import com.octopusthu.ejw.web.dflt.DefaultWebApplicationContextConfig;
+import com.octopusthu.ejw.web.dflt.component.EjwWebDfltProps;
 
 @ConditionalOnProperty("ejw.web.default.enabled")
 @Configuration
 public class DefaultDispatcherServletRegistrationConfig {
+
+	@Bean
+	public EjwWebDfltProps ejwWebDfltProps() {
+		return new EjwWebDfltProps();
+	}
 
 	@Bean
 	public ServletRegistrationBean defaultDispatcherServletRegistrationBean(
