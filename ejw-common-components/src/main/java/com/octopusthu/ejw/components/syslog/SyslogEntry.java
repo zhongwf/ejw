@@ -94,5 +94,7 @@ public class SyslogEntry implements Cloneable {
 			}
 			return ret;
 		}
+
+		public static final Principal SYSTEM = new Principal("SYSTEM", null, null);
 	}
 }
