@@ -10,6 +10,7 @@ Easy Java Web Framework built upon spring-boot, spring-framework and spring-secu
     - Form validation
 
 ## TODO
+- Transaction nesting
 - profile-aware static resources (e.g.: react.min.js)
 - remove url prefixes (/f/\*\*, /b/\*\*, /a/\*\*)
 - filter test sources
