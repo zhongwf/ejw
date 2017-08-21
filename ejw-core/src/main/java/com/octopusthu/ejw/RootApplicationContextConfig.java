@@ -1,6 +1,7 @@
 package com.octopusthu.ejw;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -10,14 +11,17 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.Ordered;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.ShallowEtagHeaderFilter;
 
 import com.octopusthu.ejw.component.EjwProps;
 import com.octopusthu.ejw.component.ExposedResourceBundleMessageSource;
+import com.octopusthu.ejw.web.filter.DisabledHiddenHttpMethodFilter;
 
 @Configuration
+@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE + 5)
 @ComponentScan({ "${ejw.basePackages}" })
 @PropertySource(value = { "classpath:ejw-core.properties" }, encoding = "UTF-8")
 @EnableConfigurationProperties
@@ -49,7 +53,14 @@ public class RootApplicationContextConfig {
 		bean.addInitParameter("encoding", props.getEncoding());
 		bean.addServletNames(props.getServletNames());
 		bean.addUrlPatterns(props.getUrlPatterns());
+		bean.setOrder(Ordered.HIGHEST_PRECEDENCE + 50);
 		return bean;
+	}
+
+	@ConditionalOnProperty("ejw.filters.disabledHiddenHttpMethodFilter.enabled")
+	@Bean
+	public DisabledHiddenHttpMethodFilter disabledHiddenHttpMethodFilter() {
+		return new DisabledHiddenHttpMethodFilter();
 	}
 
 	@ConditionalOnProperty("ejw.filters.shallowEtagHeaderFilter.enabled")
