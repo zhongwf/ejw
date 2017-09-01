@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/OracleDB" auth="Container" type="javax.sql.DataSource"
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=166.111.5.121)(PORT=1521))(ADDRESS=(PROTOCOL=TCP)(HOST=166.111.5.122)(PORT=1521))(LOAD_BALANCE=yes)(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=testdb)(FAILOVER_MODE=(TYPE=SELECT)(METHOD=BASIC)(RETRIES=180)(DELAY=5))))"
+              username="tongyi" password="tongyi@pt09" maxTotal="8" maxIdle="60" maxWaitMillis="-1"/>
+</Context>
