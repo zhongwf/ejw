@@ -1,6 +1,7 @@
 package com.octopusthu.ejw.demo.cas.client.config;
 
 import com.octopusthu.ejw.demo.cas.client.CasClientDemoProps;
+import com.octopusthu.ejw.demo.cas.client.CasDemoProps;
 import com.octopusthu.ejw.demo.cas.client.CasWebSecurityConfig;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,11 @@ public class CasClientDemoConfig {
     @Bean
     public CasWebSecurityConfig casWebSecurityConfig() {
         return new CasWebSecurityConfig();
+    }
+
+    @Bean
+    public CasDemoProps casDemoProps() {
+        return new CasDemoProps();
     }
 
     @Bean
