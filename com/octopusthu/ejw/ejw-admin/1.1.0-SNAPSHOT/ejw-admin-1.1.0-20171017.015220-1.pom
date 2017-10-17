@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>ejw-security</artifactId>
+	<artifactId>ejw-admin</artifactId>
 	<version>${ejw.version}</version>
 	<parent>
 		<groupId>com.octopusthu.ejw</groupId>
@@ -16,14 +16,15 @@
 			<artifactId>ejw-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-taglibs</artifactId>
+			<groupId>com.octopusthu.ejw</groupId>
+			<artifactId>ejw-security</artifactId>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+		</plugins>
+	</build>
 
 	<developers>
 		<developer>

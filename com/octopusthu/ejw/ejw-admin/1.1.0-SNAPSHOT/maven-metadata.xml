@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata modelVersion="1.1.0">
   <groupId>com.octopusthu.ejw</groupId>
-  <artifactId>ejw-security</artifactId>
+  <artifactId>ejw-admin</artifactId>
   <version>1.1.0-SNAPSHOT</version>
   <versioning>
     <snapshot>
-      <timestamp>20171017.021606</timestamp>
+      <timestamp>20171017.021710</timestamp>
       <buildNumber>2</buildNumber>
     </snapshot>
-    <lastUpdated>20171017021606</lastUpdated>
+    <lastUpdated>20171017021710</lastUpdated>
     <snapshotVersions>
       <snapshotVersion>
         <extension>jar</extension>
-        <value>1.1.0-20171017.021606-2</value>
-        <updated>20171017021606</updated>
+        <value>1.1.0-20171017.021710-2</value>
+        <updated>20171017021710</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>1.1.0-20171017.021606-2</value>
-        <updated>20171017021606</updated>
+        <value>1.1.0-20171017.021710-2</value>
+        <updated>20171017021710</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
