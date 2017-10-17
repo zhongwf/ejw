@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>com.octopusthu.ejw</groupId>
-  <artifactId>ejw-core</artifactId>
+  <artifactId>ejw-security</artifactId>
   <versioning>
     <versions>
       <version>1.1.0-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20171017021502</lastUpdated>
+    <lastUpdated>20171017021606</lastUpdated>
   </versioning>
 </metadata>
